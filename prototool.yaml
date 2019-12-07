@@ -1,0 +1,17 @@
+protoc:
+  version: 3.7.0
+  includes:
+    - ./api/3rdparty
+
+generate:
+  go_options:
+    import_path: api/proto
+
+  plugins:
+    - name: go
+      type: go
+      flags: plugins=grpc
+      output: ./api/gen/go
+    - name: grpc-gateway
+      type: go
+      output: ./api/gen/go
