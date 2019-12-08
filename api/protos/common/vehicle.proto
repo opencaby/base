@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package common;
+
+option go_package = "commonpb";
+option java_multiple_files = true;
+option java_outer_classname = "VehicleProto";
+option java_package = "com.common";
+
+enum VehicleType {
+  VEHICLE_TYPE_INVALID = 0;
+  VEHICLE_TYPE_OTHER = 1;
+  VEHICLE_TYPE_WALK = 2;
+  VEHICLE_TYPE_BICYCLE = 3;
+  VEHICLE_TYPE_MOTORCYCLE = 4;
+  VEHICLE_TYPE_CAR = 5;
+  VEHICLE_TYPE_CARGO = 6;
+  VEHICLE_TYPE_TRUCK = 7;
+  VEHICLE_TYPE_HELICOPTER = 8;
+  VEHICLE_TYPE_PLANE = 9;
+}

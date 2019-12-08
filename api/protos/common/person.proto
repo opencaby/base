@@ -1,0 +1,151 @@
+syntax = "proto3";
+
+package common;
+
+option go_package = "commonpb";
+option java_multiple_files = true;
+option java_outer_classname = "PersonProto";
+option java_package = "com.common";
+
+import "common/address.proto";
+import "common/device.proto";
+import "common/time.proto";
+import "google/protobuf/timestamp.proto";
+
+message Contact {
+  repeated string phones = 1;
+  string mail = 2;
+}
+
+enum BloodRelationship {
+  BLOOD_RELATIONSHIP_INVALID = 0;
+  BLOOD_RELATIONSHIP_OTHER = 1;
+  BLOOD_RELATIONSHIP_GRANDPARENT = 2;
+  BLOOD_RELATIONSHIP_PARENTS = 3;
+  BLOOD_RELATIONSHIP_UNCLE_AUNT = 4;
+  BLOOD_RELATIONSHIP_SIBLING = 5;
+  BLOOD_RELATIONSHIP_SPOUSE = 6;
+  BLOOD_RELATIONSHIP_SENTIMENTAL_COUPLE = 7;
+  BLOOD_RELATIONSHIP_CHILD = 8;
+  BLOOD_RELATIONSHIP_NIECE_NEPHEW = 9;
+  BLOOD_RELATIONSHIP_FRIEND = 10;
+  BLOOD_RELATIONSHIP_WATCHMAN = 11;
+  BLOOD_RELATIONSHIP_CONCIERGE = 12;
+  BLOOD_RELATIONSHIP_EMPLOYEE = 13;
+  BLOOD_RELATIONSHIP_NEIGHBOUR = 14;
+}
+
+enum Gender {
+  GENDER_INVALID = 0;
+  GENDER_OTHER = 1;
+  GENDER_FEMALE = 2;
+  GENDER_MALE = 3;
+}
+
+message Person {
+  Contact contact = 1;
+  string fist_names = 2;
+  string last_names = 3;
+  Gender gender = 4;
+  google.protobuf.Timestamp birthday = 5;
+}
+
+message Role {
+  string name = 1;
+  string key = 2;
+}
+
+message Password {
+  string password = 1;
+  google.protobuf.Timestamp issued_at = 3;
+  google.protobuf.Timestamp expire_at = 4;
+}
+
+message User {
+  int32 id = 1;
+  string username = 2;
+  Person person = 3;
+  Role role = 4;
+  string password = 9;
+  repeated string images = 10;
+  string email_confirmation_token = 11;
+  google.protobuf.Timestamp last_login = 13;
+  bool is_email_confirmed = 14;
+  repeated common.Device devices = 12;
+}
+
+message Representative {
+  string first_name = 1;
+  string last_name = 2;
+  string position = 3;
+  repeated string phones = 4;
+  string emails = 5;
+}
+
+message Company {
+  Representative representative = 1;
+  string team_url = 2;
+  string business_type = 3;
+  string website = 4;
+}
+
+message CreditCard {
+  string auth_code = 1;
+  string credit_card_type = 2;
+  string last_4_card_digit = 3;
+  string response_code = 4;
+  string tbk_user = 5;
+}
+
+enum PaymentMethod {
+  PAYMENT_METHOD_INVALID = 0;
+  PAYMENT_METHOD_OTHER = 1;
+  PAYMENT_METHOD_CREDIT_CARD = 2;
+  PAYMENT_METHOD_POINTS = 3;
+}
+
+enum PaymentTime {
+  PAYMENT_TIME_INVALID = 0;
+  PAYMENT_TIME_POST = 1;
+  PAYMENT_TIME_PRE = 2;
+}
+
+message PaymentInfo {
+  common.Period payment_period = 1;
+  string price_model = 2;
+  PaymentTime time = 4;
+  repeated CreditCard credit_cards = 5;
+  PaymentMethod method = 6;
+}
+
+enum ClientType {
+  CLIENT_TYPE_INVALID = 0;
+  CLIENT_TYPE_NATURAL = 1;
+  CLIENT_TYPE_JURIDICAL = 2;
+}
+
+enum ClientStatus {
+  CLIENT_STATUS_INVALID = 0;
+  CLIENT_STATUS_ENABLED = 1;
+  CLIENT_STATUS_DISABLED_FOR_PAYMENT = 2;
+  CLIENT_STATUS_DISABLED_FOR_BAD_BEHAVIOR = 3;
+  CLIENT_STATUS_DISABLED_FOR_OTHER_REASON = 4;
+}
+
+message Credentials {
+  string api_key = 1;
+}
+
+message Client {
+  ClientType type = 2;
+  repeated User users = 3;
+  Company company = 4;
+  PaymentInfo payment_info = 6;
+  common.Address address = 7;
+  repeated string polygons = 8;
+  bool is_confined_to_polygon = 9;
+  bool is_second_phase_reg_done = 10;
+  bool is_contacted = 11;
+  google.protobuf.Timestamp contact_time = 12;
+  Credentials credentials = 13;
+}

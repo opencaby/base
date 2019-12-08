@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package common;
+
+option go_package = "commonpb";
+option java_multiple_files = true;
+option java_outer_classname = "RequestProto";
+option java_package = "com.common";
+
+enum RequestSource {
+  REQUEST_SOURCE_INVALID = 0;
+  REQUEST_SOURCE_OTHER = 1;
+  REQUEST_SOURCE_MOBILE_APP = 2;
+  REQUEST_SOURCE_WEB_CLIENT = 4;
+}
+
+message RequestHeader {
+  string device_uuid = 1;
+  RequestSource source = 2;
+}

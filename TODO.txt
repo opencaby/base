@@ -1,0 +1,6 @@
+[x] Create installer for linux/ubuntu
+[] Create installer for linux/fedora
+
+
+[·] Compile simple server
+[] Create system to deploy clients libs

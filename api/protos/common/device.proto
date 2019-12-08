@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package common;
+
+option go_package = "commonpb";
+option java_multiple_files = true;
+option java_outer_classname = "DeviceProto";
+option java_package = "com.common";
+
+import "google/api/annotations.proto";
+import "google/type/latlng.proto";
+
+message InstalledApp {
+  string id = 1;
+  string name = 2;
+  string version = 3;
+  google.type.LatLng release_time = 4;
+  google.type.LatLng installation_time = 5;
+}
+
+enum NetworkType {
+  NETWORK_TYPE_INVALID = 0;
+  NETWORK_TYPE_OTHER = 1;
+  NETWORK_TYPE_WIRED = 8;
+}
+
+enum OS {
+  OS_INVALID = 0;
+  OS_OTHER = 1;
+  OS_ANDROID = 2;
+  OS_FUCHSIA = 3;
+  OS_IOS = 4;
+  OS_WINDOWS = 5;
+  OS_LINUX = 6;
+  OS_MAC = 7;
+}
+
+enum DeviceType {
+  DEVICE_TYPE_INVALID = 0;
+  DEVICE_TYPE_OTHER = 1;
+  DEVICE_TYPE_PHONE = 2;
+  DEVICE_TYPE_TABLET = 3;
+  DEVICE_TYPE_DESKTOP_COMPUTER = 4;
+  DEVICE_TYPE_LAPTOP_COMPUTER = 5;
+  DEVICE_TYPE_SMART_WATCH = 6;
+  DEVICE_TYPE_CAR = 7;
+  DEVICE_TYPE_TV = 8;
+}
+
+enum TokenType {
+  TOKEN_TYPE_INVALID = 0;
+  TOKEN_TYPE_FIREBASE_PUSH = 1;
+  TOKEN_TYPE_FACEBOOK_AUTH = 2;
+  TOKEN_TYPE_INSTAGRAM_AUTH = 3;
+  TOKEN_TYPE_GOOGLE_ACCOUNT_AUTH = 4;
+}
+
+message Device {
+  string type = 1;
+  OS os = 2;
+  string os_version = 3;
+  string model = 4;
+  string maker = 6;
+  NetworkType network_type = 7;
+  map<uint32, string> tokens = 8;
+  repeated InstalledApp installed_apps = 9;
+  map<string, string> meta = 10;
+}

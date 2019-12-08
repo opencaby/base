@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package common;
+
+option go_package = "commonpb";
+option java_multiple_files = true;
+option java_outer_classname = "AddressProto";
+option java_package = "com.common";
+
+import "google/type/latlng.proto";
+
+message Address {
+  google.type.LatLng coordinate = 1;
+  string address = 2;
+  string reference = 3;
+  string observation = 4;
+  repeated string site_images = 5;
+}

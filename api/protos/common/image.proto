@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package common;
+
+option go_package = "commonpb";
+option java_multiple_files = true;
+option java_outer_classname = "ImageProto";
+option java_package = "com.common";
+
+import "google/type/latlng.proto";
+
+message Image {
+  string id = 1;
+  string uri = 2;
+  string description = 3;
+  google.type.LatLng taken_place = 4;
+  google.type.LatLng taken_time = 5;
+  map<string, string> metadata = 6;
+}

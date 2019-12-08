@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package common.test;
+
+option go_package = "testpb";
+option java_multiple_files = true;
+option java_outer_classname = "TestProto";
+option java_package = "com.common.test";
+
+// topic: /test
+message Test {
+  string foo = 1;
+  int64 bar = 2;
+}

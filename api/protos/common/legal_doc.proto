@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package common;
+
+option go_package = "commonpb";
+option java_multiple_files = true;
+option java_outer_classname = "LegalDocProto";
+option java_package = "com.common";
+
+enum LegalDocType {
+  LEGAL_DOC_TYPE_INVALID = 0;
+  LEGAL_DOC_TYPE_OTHER = 1;
+  LEGAL_DOC_TYPE_ID_CARD = 2;
+  LEGAL_DOC_TYPE_PASSPORT = 3;
+  LEGAL_DOC_TYPE_DRIVER_LICENSE = 4;
+  LEGAL_DOC_TYPE_SOCIAL_SECURITY_CARD = 5;
+}
+
+enum LegalDocLocality {
+  LEGAL_DOC_LOCALITY_INVALID = 0;
+  LEGAL_DOC_LOCALITY_OTHER = 1;
+  LEGAL_DOC_LOCALITY_LOCAL = 2;
+  LEGAL_DOC_LOCALITY_REGIONAL = 3;
+  LEGAL_DOC_LOCALITY_NATIONAL = 4;
+  LEGAL_DOC_LOCALITY_FOREIGN = 5;
+  LEGAL_DOC_LOCALITY_INTERNATIONAL = 6;
+}
+
+message LegalDoc {
+  string id = 1;
+  string legal_doc_type = 2;
+  string legal_doc_locality = 3;
+  string issued_time = 5;
+  string expire_time = 6;
+  bool is_expired = 7;
+  string notes = 8;
+  map<string, string> metadata = 9;
+}

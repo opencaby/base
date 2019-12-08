@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package common;
+
+option go_package = "commonpb";
+option java_multiple_files = true;
+option java_outer_classname = "TimeProto";
+option java_package = "com.common";
+
+import "google/type/dayofweek.proto";
+
+enum Period {
+  PERIOD_INVALID = 0;
+  PERIOD_NONE = 1;
+  PERIOD_DAILY = 2;
+  PERIOD_WEEKLY = 3;
+  PERIOD_MONTHLY = 4;
+  PERIOD_YEARLY = 5;
+}
+
+message TimeWindowHour {
+  float begin = 1;
+  float end = 2;
+}
+
+message TimeWindow {
+  repeated google.type.DayOfWeek days = 1;
+  repeated TimeWindowHour hour = 2;
+}
